@@ -9,41 +9,35 @@ class Order extends Component {
     const year = new Date().getFullYear();
 
     return (
-      <div className="col-2 mt-3 mb-3">
-        <table className="table table-borderless">
-          <tbody>
-            <tr>
-              <td>
-                <span className="badge badge-pill badge-success">
+      <div className="row mt-3 mb-3">
+        <div className="col col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div className="card bg-light text-dark">
+            <div className="card-body">
+              <button
+                className="btn btn-danger btn-sm pull-right"
+                onClick={() => onOrderCancel(item)}
+              >
+                x
+              </button>
+              <div className="card-title">
+                <h4 className="">
                   {item.itemName}
-                </span>
-              </td>
-              <td>
+                  <span className="badge badge-pill badge-light">
+                    Cost: ₹ {item.totalPrice}
+                  </span>
+                </h4>
+              </div>
+              <div className="card-text">
                 <span className="badge badge-pill badge-light">
-                  {item.quantity}
-                </span>
-              </td>
-              <td>
-                <span className="badge badge-pill badge-light">
-                  Cost: ₹ {item.totalPrice}
-                </span>
-              </td>
-              <td>
+                  Quantity: {item.quantity}
+                </span>{" "}
                 <span className="badge badge-pill badge-light">
                   Placed on: {`${date}/${month}/${year}`}
                 </span>
-              </td>
-              <td>
-                <button
-                  className="btn btn-danger btn-sm"
-                  onClick={() => onOrderCancel(item)}
-                >
-                  Cancel
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
