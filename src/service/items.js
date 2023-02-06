@@ -41,6 +41,18 @@ const items = [
     price: 10,
     stock: 13,
   },
+  {
+    id: 8,
+    itemName: "Compass",
+    price: 15,
+    stock: 8,
+  },
+  {
+    id: 9,
+    itemName: "Divider",
+    price: 12,
+    stock: 14,
+  },
 ];
 
 export function getItems() {

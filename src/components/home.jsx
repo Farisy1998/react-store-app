@@ -1,49 +1,32 @@
 import React, { Component } from "react";
+import HomeCard from "./homeCard";
 
 class Home extends Component {
   render() {
-    const { products, onCartClick } = this.props;
-    const filteredProducts = products.filter((p) => p.stock > 0);
+    const { products, cartItems, onCartClick, onLike } = this.props;
+    const productsCount = products.length;
+
+    if (productsCount === 0)
+      return <h4 className="text-center m-2">No items in stock</h4>;
 
     return (
-      <table className="table mt-3 mb-3">
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Stock</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredProducts.map((product) => (
-            <tr key={product.id}>
-              <td>{product.itemName}</td>
-              <td>{product.price}</td>
-              <td>{product.stock}</td>
-              <td>
-                <button
-                  className="btn btn-success btn-sm"
-                  onClick={() => onCartClick(product)}
-                  disabled={this.toogleDisable(product.id)}
-                >
-                  Cart
-                </button>
-              </td>
-            </tr>
+      <React.Fragment>
+        <div className="row bg-info p-2 m-3">
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className="col col-sm-12 col-md-3 col-xl-3 col-xxl-3 mt-3 mb-3"
+            >
+              <HomeCard
+                item={product}
+                cartItems={cartItems}
+                onCartClick={onCartClick}
+                onLike={onLike}
+              />
+            </div>
           ))}
-        </tbody>
-      </table>
-    );
-  }
-
-  toogleDisable(productId) {
-    const cart = this.props.cartItems;
-
-    const targetProducts = cart.filter((item) => item.id === productId);
-
-    return (
-      targetProducts.length !== 0 && targetProducts[0].id === productId && true
+        </div>
+      </React.Fragment>
     );
   }
 }
